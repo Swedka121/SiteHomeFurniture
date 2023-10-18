@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Roboto+Mono:wght@400;500;600;700&display=swap');
+
+body {
+    overflow-x: hidden;
+    padding: 0%;
+    margin: 0%;
+    height:max-content;
+}
+button {
+    background: none;
+    border:none;
+    cursor: pointer;
+    transition: 0.5s linear;
+}
+button:hover {
+    margin-top: -10px;
+}
+
+$icon-size: 40px;
+
+   .header {
+        width:calc(100vw - 66px);
+        height:100px;
+        position: absolute;
+        z-index: 10;
+        left:0px;
+        top:0px;
+        border-radius: 0px 0px 50px 50px;
+        background: #FFD7B2;
+        padding-left: 66px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .burger {
+            background-image: url(/public/burger_icon.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            width:$icon-size;
+            height:$icon-size;
+            pointer-events: all;
+        }
+        .logo {
+            margin-left: 2vw;
+            max-width:400px;
+            width: 13vw;
+            height:70%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            column-gap: 0.5vw;
+            .logo-img {
+                background-image: url(/public/logo.svg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                height:100%;
+                width:60px;
+            }
+            .logo-text {
+                background-image: url(/public/text_to_logo.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                width:60%;
+                height:5vh;
+            }
+        }
+        .line {
+            width: 4px;
+            height:60%;
+            background-color: rgba(60, 60, 60, 0.50);
+            border-radius: 10px;
+        }
+        .home {
+            width:$icon-size;
+            height:$icon-size;
+            background-image: url(/public/home_icon.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-left: 1vw;
+        }
+        .profile {
+            width:$icon-size;
+            height:$icon-size;
+            background-image: url(/public/user_icon.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-left: 2vw;
+        }
+        .search {
+            width: 50%;
+            height:40px;
+            background-color: #FFEDE1;
+            border-radius: 29px;
+            border:none;
+            margin-left: 1vw;
+        }
+        .cart {
+            width:calc($icon-size + 20px);
+            height:calc($icon-size + 20px);
+            background-image: url(/public/cart_icon.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-left: 12vw;
+        }
+    } 
+
+.errorpage {
+    width:100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#ffd3b7;
+    >h1 {
+        font-family: Anonymous Pro;
+    }
+}
+
+
+.Modal-burger {
+    opacity: 0;
+    width:30vw;
+    height:0vh;
+    position: absolute;
+    top:100px;
+    left:3vw;
+    background-color: #FFCEA1;
+    border-radius: 0px 0px 10px 10px;
+    z-index: 2;
+    transform: translateY(1);
+    transition: all 0.3s linear;
+    z-index: -2;
+    .content {
+        opacity: 0;
+        transition: all 2s linear;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        column-gap: 1vw;
+        .Loading {
+            font-family: Anonymous Pro;
+            text-align: center;
+        }
+        .type {
+            width:40%;
+            font-family: Anonymous Pro;
+            font-size: 12px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            .type-btn {
+                font-family: Anonymous Pro;
+                font-size: 14px;
+                border:none;
+                height:50%;
+                width:50%;
+                background-color: #ffdab7;
+                border-radius: 50px;
+                transition: all 0.5s ease;
+            }
+            .type-btn:hover {
+                transform: scale(1.1);
+                border: 1px solid #ffc58f;
+            }
+        }
+    }
+}
+.Modal-cart {
+    opacity: 0;
+    width:20vw;
+    height:0vh;
+    position: absolute;
+    top:100px;
+    left:75vw;
+    background-color: #FFCEA1;
+    border-radius: 0px 0px 10px 10px;
+    z-index: 2;
+    transform: translateY(1);
+    transition: all 0.3s linear;
+    z-index: -2;
+    display: flex;
+    flex-direction: column;
+    .title {
+        text-align: center;
+        font-family: Anonymous Pro;
+        font-weight: 700;
+    }
+    .content {
+        width:100%;
+        height:80%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        background-color: #fed5af;
+        .messege {
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            font-family: Anonymous Pro;
+            font-weight: 400;
+            font-size: 16px;
+        }
+        .cart-item {
+            width:95%;
+            height:15vh;
+            background-color: #fed5af;
+            padding-left: 5%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            border-top: #ffb067c1 solid 2px;
+            border-bottom: #ffb067c1 solid 2px;
+            column-gap: 1vw;
+            >h1 {
+                width:55%;
+                max-width:55%;
+                font-family: Anonymous Pro;
+                font-size: 20px;
+                word-break: break-all;
+            }
+            >p {
+                font-family: Anonymous Pro;
+                font-size: 12px;
+            }
+            .cart-item-img {
+                width:45%;
+                height:100%;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+    .cart-buy-btn {
+        width:100%;
+        height:10%;
+        background-color: #ffc58f;
+        border-radius: 0px 0px 10px 10px;
+    }
+}
+.Modal-cart .active {
+    height:50vh;
+}
+.active {
+    opacity: 1;
+    height:30vh;
+    .content {
+        opacity: 1;
+    }
+}
+.active-cart {
+    opacity: 1;
+    height:50vh;
+    .content {
+        opacity: 1;
+    }
+}
