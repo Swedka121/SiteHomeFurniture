@@ -1,10 +1,12 @@
 const express = require("express")
+const {body} = require("express-validator")
 const path = require("path")
 const FileMiddleware = require("../middleware/file")
 const Item = require("../models/Item")
 const Config = require("../models/Config")
 const fs = require("fs")    
 const UserController = require("../controllers/user-controller")
+const AuthMiddekware = require("../middleware/authmiddelware")
 
 const Router = express.Router
 const router = new Router()
@@ -52,8 +54,8 @@ router.post("/getitem", async (req, res) => {
     const data = await Item.findById(id).exec()
     res.json(data)
 })
-router.post("/registration", UserController.registration)
-router.post("/login", UserController.login)
+router.post("/registration", body("email").isEmail(), body("password").isLength({min: 3, max: 32}) ,UserController.registration)
+router.post("/login", body("email").isEmail(), body("password").isLength({min: 3, max: 32}) ,UserController.login)
 router.post("/logout", UserController.logout)
 router.get("/activate/:link", UserController.activate)
 

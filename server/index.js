@@ -4,6 +4,7 @@ const CookieParser = require("cookie-parser")
 require("dotenv").config()
 const mongoose = require("mongoose")
 const app = express()
+const ErrorMiddelware = require("./middleware/error-middelware")
 
 const apiRouter = require("./routes/main")
 
@@ -16,6 +17,7 @@ app.use(CookieParser())
 app.use(express.json())
 app.use("/asset",express.static("./assets"))
 app.use("/hero",express.static("./hero"))
+app.use(ErrorMiddelware)
 mongoose
  .connect(DB_connect)
  .then(() => console.log("Connected to DB"))
