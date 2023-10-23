@@ -20,4 +20,3 @@ function Render_UI(store) {
     const store = useContext(Context)
     return Render_UI(store)
 }
-
