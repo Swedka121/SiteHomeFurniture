@@ -25,7 +25,11 @@ class MailService {
                 html:
                 `
                     <div>
+<<<<<<< HEAD
+                        <h1 style="width:100%; text-algin:center;">For activate click</h1>
+=======
                         <h1>For activate click</h1>
+>>>>>>> 7a61246a6c4575602504068723a6cd8bed73de1a
                         <a href="${api_domail}/api/activate/${link}"><div style="width:50%; height:40%; color:white; background-color:blue; margin: 0 auto; border-radius:10px; display:flex; algin-items:center; justify-content:center;"><h1 style="margin: 0 auto">Activate</h1></div></a>
                     </div>
                 `

@@ -7,6 +7,11 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+<<<<<<< HEAD
+    "mobx": "^6.10.2",
+    "mobx-react-lite": "^4.0.5",
+=======
+>>>>>>> 7a61246a6c4575602504068723a6cd8bed73de1a
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.15.0",
