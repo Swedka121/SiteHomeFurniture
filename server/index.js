@@ -10,14 +10,12 @@ const apiRouter = require("./routes/main")
 
 const PORT = process.env.PORT || 9001
 const DB_connect = process.env.DB
-<<<<<<< HEAD
 const corsOptions = {
     credentials: true,
     origin: "http://localhost:9000"
 }
-=======
-const corsOptions = process.env.CORS
->>>>>>> 7a61246a6c4575602504068723a6cd8bed73de1a
+
+
 
 app.use(cors(corsOptions))
 app.use(CookieParser())
