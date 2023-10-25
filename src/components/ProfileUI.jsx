@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from '..'
+import { observer } from 'mobx-react-lite'
 
-export default function ProfileUI() {
+function ProfileUI() {
+  const store = useContext(Context)
   return (
-    <div>ProfileUI</div>
+    <div><button onClick={() => store.logout()}>Logout</button></div>
   )
 }
+
+export default observer(ProfileUI)

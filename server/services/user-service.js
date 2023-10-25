@@ -55,20 +55,25 @@ class UserService {
         await user.save()
     }
     async refresh(refreshToken) {
-        if (!refreshToken) {
-            throw ApiError.UnavthorizadedError()
+        try {
+            if (!refreshToken) {
+                throw ApiError.UnavthorizadedError()
+            }
+            const userData = TokenService.validateRefreshToken(refreshToken)
+            const DBToken = await TokenService.findToken(refreshToken)
+            if (!userData || !DBToken) {
+                throw ApiError.UnavthorizadedError()
+            }
+            const user = User.findById(userData.id)
+            const userDto = new UserDto(user)
+            const tokens = TokenService.generateToken({...userDto})
+            await TokenService.saveToken(userDto.id, tokens.refreshToken)
+    
+            return {...tokens, user: userDto}
+        } catch(err) {
+            
         }
-        const userData = TokenService.validateRefreshToken(refreshToken)
-        const DBToken = await TokenService.findToken(refreshToken)
-        if (!userData || !DBToken) {
-            throw ApiError.UnavthorizadedError()
-        }
-        const user = User.findById(userData.id)
-        const userDto = new UserDto(user)
-        const tokens = TokenService.generateToken({...userDto})
-        await TokenService.saveToken(userDto.id, tokens.refreshToken)
-
-        return {...tokens, user: userDto}
+        
     }
 }
 

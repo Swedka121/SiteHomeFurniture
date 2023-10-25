@@ -7,12 +7,12 @@ const Config = require("../models/Config")
 const fs = require("fs")    
 const UserController = require("../controllers/user-controller")
 const AuthMiddekware = require("../middleware/authmiddelware")
+const ApiError = require("../exceptions/ApiError")
 
 const Router = express.Router
 const router = new Router()
 
 router.get("/gethero/", (req, res) => {
-    console.log("hero")
     const Data_to_res = []
     fs.readdir(path.join(__dirname,"../hero"), (err, data) => {
         if (err) {console.log(err); res.sendStatus(404)}
@@ -26,6 +26,27 @@ router.get("/gethero/", (req, res) => {
         })
         res.json({data: Data_to_res})   
     })
+})
+router.get("/getslider/:name", (req,res) => {
+    const { name } = req.params
+    const data = []
+    try {
+        fs.readdir(path.join(__dirname,"../assets/sliders/", name), (err, data1) => {
+            if (err) {console.log(err); res.sendStatus(404)}
+            var i = 0
+            data1.forEach(element => {
+                var Object1 = {}
+                Object1.img = "http://localhost:9001/asset/sliders/" + name + "/" + element
+                Object1.id = i
+                data.push(Object1)
+                i++
+            })
+            res.json({data})   
+        })
+    } catch (error) {
+        throw new ApiError.BadRequest("Undefined", error)
+    }
+    
 })
 router.get("/getconfig/", async (req, res) => {
     const toRes = await Config.find({}).exec()
@@ -56,8 +77,9 @@ router.post("/getitem", async (req, res) => {
 })
 router.post("/registration", body("email").isEmail(), body("password").isLength({min: 3, max: 32}) ,UserController.registration)
 router.post("/login", body("email").isEmail(), body("password").isLength({min: 3, max: 32}) ,UserController.login)
-router.post("/logout", UserController.logout)
+router.get("/logout", UserController.logout)
 router.get("/activate/:link", UserController.activate)
+router.get("/refresh", UserController.refresh)
 
 
 module.exports = router
